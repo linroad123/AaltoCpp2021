@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "Vagrantfile": "ruby",
+        "random": "cpp"
+    }
+}
