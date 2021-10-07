@@ -1,5 +1,6 @@
 #pragma once
-
+#include <list>
+#include "dragon.hpp"
 /* TODO: class DragonCave
  * Description:
  * ------------
@@ -10,25 +11,6 @@
  *
  * Functions:
  * -----------
- * The DragonCave class has a parameterless constructor that default constructs
- * the members i.e. uses the parameterless constructor to initialize them.
- *
- * The destructor of the DragonCave class deletes all the Dragons in the
- * the DragonCave's Dragon* list.
- *
- * GetDragons: the function returns a const reference to the DragonCave's
- * list of Dragon pointers. The function takes no parameters and does not change 
- * the DragonCave's state, i.e. the function should be const.
- *
- * Accommodate: takes a Dragon pointer as a parameter and adds it to the end of
- * the DragonCave's Dragon pointer list. The function returns nothing.
- * 
- * Evict: takes a Dragon's name as a const string reference as a parameter.
- * Tries to find a dragon with a matching name from the DragonCaves Dragon pointer
- * list. Erases the first Dragon pointer with a matching name from the list. If
- * there is no Dragon with a matching name in the list, the function does nothing.
- * Note that the function only erases the pointer from the list, but DOES NOT delete
- * the Dragon object. The function returns nothing.
  *
  * Other:
  * -----------
@@ -36,8 +18,6 @@
  * copyable (also means not assignable), so copy and assignment operations for this
  * class should be prevented.
  */
-
-
 
 /* TODO: operator <<
  * ------------
@@ -63,3 +43,31 @@ DragonCave dwellers:\n
  * The parameter output stream.
  */
 
+class DragonCave
+{
+public:
+    DragonCave() = default;
+    ~DragonCave();
+
+    DragonCave(const DragonCave &) = delete;
+
+    const std::list<Dragon *> &GetDragons() const;
+    void Accommodate(Dragon *dragon);
+    void Evict(const std::string &name);
+
+private:
+    std::list<Dragon *> dragons_;
+};
+
+std::ostream &operator<<(std::ostream &out,const DragonCave& dragon)
+{
+    out << "DragonCave dwellers:" << std::endl;
+    out << std::endl;
+
+    for (auto i : dragon.GetDragons())
+    {
+        out << i->GetName() << std::endl;
+    }
+
+    return out;
+}
