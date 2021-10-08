@@ -3,7 +3,7 @@
 #include <list>
 
 // Define DragonCave's methods here
-DragonCave::DragonCave(){};
+
 
 const std::list<Dragon *> &DragonCave::GetDragons() const
 {
@@ -25,7 +25,7 @@ void DragonCave::Evict(const std::string &name)
 {
     for (auto i : dragons_) {
         if (name == i->GetName()) {
-            delete i;
+            this->dragons_.remove(i);
             return;
         }
     }
@@ -35,6 +35,19 @@ DragonCave::~DragonCave()
 {
     for (auto i : dragons_)
     {
-        delete i;
+		delete i;
     }
+}
+
+std::ostream &operator<<(std::ostream &out,const DragonCave& dragon)
+{
+    out << "DragonCave dwellers:" << std::endl;
+    out << std::endl;
+
+    for (auto i : dragon.GetDragons())
+    {
+        out << *i << std::endl;
+    }
+
+    return out;
 }

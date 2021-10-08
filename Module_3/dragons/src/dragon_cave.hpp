@@ -54,20 +54,7 @@ public:
     const std::list<Dragon *> &GetDragons() const;
     void Accommodate(Dragon *dragon);
     void Evict(const std::string &name);
-
+	friend std::ostream &operator<<(std::ostream &out,const DragonCave& dragon);
 private:
     std::list<Dragon *> dragons_;
 };
-
-std::ostream &operator<<(std::ostream &out,const DragonCave& dragon)
-{
-    out << "DragonCave dwellers:" << std::endl;
-    out << std::endl;
-
-    for (auto i : dragon.GetDragons())
-    {
-        out << i->GetName() << std::endl;
-    }
-
-    return out;
-}

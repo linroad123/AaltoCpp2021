@@ -14,6 +14,7 @@ void MagicDragon::Eat(std::list<Food> &food)
     for (auto i : food) {
         if (EatHerbs(i)) {
             food.remove(i);
+            break;
         }
     }
 }
@@ -38,6 +39,7 @@ void MagicDragon::Hoard(std::list<Treasure> &treasure)
     for (auto i : treasure) {
         if (HoardPotion(i)) {
             treasure.remove(i);
+            break;
         }
     }
 }

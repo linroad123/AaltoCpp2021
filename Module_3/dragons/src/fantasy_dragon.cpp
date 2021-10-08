@@ -8,16 +8,18 @@ void FantasyDragon::Eat(std::list<Food> &food)
 {
     // food.remove_if(FantasyDragon::EatHerbs);
     // std::remove_if(food.begin(),food.end(),&EatHerbs);
-    for (auto i : food) {
-        if (EatHerbs(i)) {
+    for (auto i : food)
+    {
+        if (EatHerbs(i))
+        {
             food.remove(i);
+            break;
         }
     }
 }
 
 bool FantasyDragon::EatHerbs(const Food &fd)
 {
-
     if (fd.type == FoodType::People or fd.type == FoodType::PeopleFood)
     {
         std::cout << "Fantasy dragon ate: " << fd.name << std::endl;
@@ -33,9 +35,12 @@ bool FantasyDragon::EatHerbs(const Food &fd)
 void FantasyDragon::Hoard(std::list<Treasure> &treasure)
 {
     // treasure.remove_if(&FantasyDragon::HoardPotion);
-    for (auto i : treasure) {
-        if (HoardPotion(i)) {
+    for (auto i : treasure)
+    {
+        if (HoardPotion(i))
+        {
             treasure.remove(i);
+            break;
         }
     }
 }

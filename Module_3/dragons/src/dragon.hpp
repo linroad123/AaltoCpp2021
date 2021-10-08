@@ -43,12 +43,13 @@ public:
       : name_(name), age_(age), size_(size) {}
   Dragon(const Dragon& d);
 
-  ~Dragon();
+  virtual ~Dragon(){}
 
   const std::string &GetName() const;
   size_t GetAge() const;
   size_t GetSize() const;
   const std::list<Treasure> &GetTreasures() const;
+  friend std::ostream &operator<<(std::ostream &out, const Dragon &dragon);
 
   virtual void Eat(std::list<Food> &food) = 0;
   virtual void Hoard(std::list<Treasure> &treasure) = 0;
@@ -60,16 +61,3 @@ protected:
   std::list<Treasure> treasure_;
 };
 
-std::ostream &operator<<(std::ostream &out, const Dragon &dragon)
-{
-  out << "Dragon named: " << dragon.GetName() << ", "
-      << "age: " << dragon.GetAge() << ", "
-      << "size: " << dragon.GetSize() << std::endl;
-  out << "Treasures:" << std::endl;
-  for (auto i : dragon.GetTreasures())
-  {
-    out << i.name << std::endl;
-  }
-
-  return out;
-}

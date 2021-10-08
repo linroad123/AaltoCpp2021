@@ -1,9 +1,5 @@
 #include "dragon.hpp"
 
-Dragon::~Dragon()
-{
-
-}
 
 const std::string &Dragon::GetName() const
 {
@@ -25,3 +21,16 @@ const std::list<Treasure> &Dragon::GetTreasures() const
     return treasure_;
 }
 
+std::ostream &operator<<(std::ostream &out, const Dragon &dragon)
+{
+  out << "Dragon named: " << dragon.GetName() << ", "
+      << "age: " << dragon.GetAge() << ", "
+      << "size: " << dragon.GetSize() << std::endl;
+  out << "Treasures:" << std::endl;
+  for (auto i : dragon.GetTreasures())
+  {
+    out << i.name << std::endl;
+  }
+
+  return out;
+}
