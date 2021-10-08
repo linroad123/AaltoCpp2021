@@ -11,12 +11,15 @@ MagicDragon::MagicDragon(const std::string &name, size_t age, size_t size) : Dra
 //  *  The food should be eaten in the order from the list's beginning to end.
 void MagicDragon::Eat(std::list<Food> &food)
 {
-    food.remove_if(EatHerbs);
+    for (auto i : food) {
+        if (EatHerbs(i)) {
+            food.remove(i);
+        }
+    }
 }
 
 bool MagicDragon::EatHerbs(Food &fd)
 {
-    FoodType Herbs;
     if (fd.type == Herbs)
     {
         std::cout << "Magic dragon ate: " << fd.name << std::endl;
@@ -32,12 +35,16 @@ bool MagicDragon::EatHerbs(Food &fd)
 
 void MagicDragon::Hoard(std::list<Treasure> &treasure)
 {
-    treasure.remove_if(HoardPotion);
+    for (auto i : treasure) {
+        if (HoardPotion(i)) {
+            treasure.remove(i);
+        }
+    }
 }
 
 bool MagicDragon::HoardPotion(Treasure &tr)
 {
-    if (tr.type == TreasureType::Potions)
+    if (tr.type == Potions)
     {
         std::cout << "Magic dragon received: " << tr.name << std::endl;
         treasure_.push_back(tr);

@@ -15,9 +15,10 @@ void FantasyDragon::Eat(std::list<Food> &food)
     }
 }
 
-bool FantasyDragon::EatHerbs(Food &fd)
+bool FantasyDragon::EatHerbs(const Food &fd)
 {
-    if (fd.type == People or fd.type == PeopleFood)
+
+    if (fd.type == FoodType::People or fd.type == FoodType::PeopleFood)
     {
         std::cout << "Fantasy dragon ate: " << fd.name << std::endl;
         this->size_++;
@@ -39,9 +40,9 @@ void FantasyDragon::Hoard(std::list<Treasure> &treasure)
     }
 }
 
-bool FantasyDragon::HoardPotion(Treasure &tr)
+bool FantasyDragon::HoardPotion(const Treasure &tr)
 {
-    if (tr.type == Jewellery)
+    if (tr.type == TreasureType::Jewellery)
     {
         std::cout << "Fantasy dragon received: " << tr.name << std::endl;
         this->treasure_.push_back(tr);

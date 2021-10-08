@@ -15,6 +15,6 @@ public:
     FantasyDragon(const std::string &name, size_t age, size_t size);
     void Eat(std::list<Food> &food);
     void Hoard(std::list<Treasure> &treasure);
-    bool EatHerbs(Food &fd);
-    bool HoardPotion(Treasure &tr);
+    bool EatHerbs(const Food &fd);
+    bool HoardPotion(const Treasure &tr);
 };
