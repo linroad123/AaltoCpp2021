@@ -51,8 +51,8 @@ public:
   size_t GetSize() const;
   const std::list<Treasure> &GetTreasures() const;
 
-  virtual void Eat(std::list<Food> &food) const = 0;
-  virtual void Hoard(std::list<Treasure> &treasure) const = 0;
+  virtual void Eat(std::list<Food> &food) = 0;
+  virtual void Hoard(std::list<Treasure> &treasure) = 0;
 
 protected:
   const std::string &name_;
@@ -66,9 +66,10 @@ std::ostream &operator<<(std::ostream &out, const Dragon &dragon)
   out << "Dragon named: " << dragon.GetName() << ", "
       << "age: " << dragon.GetAge() << ", "
       << "size: " << dragon.GetSize() << std::endl;
-  out << "Treasures:" <<std::endl;
-  for (auto i : dragon.GetTreasures()) {
-    out << i.name <<std::endl;
+  out << "Treasures:" << std::endl;
+  for (auto i : dragon.GetTreasures())
+  {
+    out << i.name << std::endl;
   }
 
   return out;
