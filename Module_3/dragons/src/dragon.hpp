@@ -41,6 +41,8 @@ class Dragon
 public:
   Dragon(const std::string &name, size_t age, size_t size)
       : name_(name), age_(age), size_(size) {}
+  Dragon(const Dragon& d);
+  Dragon();
 
   ~Dragon();
 
